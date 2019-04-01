@@ -1,0 +1,119 @@
+vi -c command file  Open file, execute command, which is
+		    usually a search command or line num-
+		    ber (POSIX)
+vi +/pattern file   Open file directly at pattern
+ex file 	    Invoke ex on file
+ex - file < script  Invoke ex on file, taking commands
+		    from script; suppress informative mes-
+		    sages and prompts
+ex -s file < script Invoke ex on file, taking commands
+		    from script; suppress informative mes-
+		    sages and prompts (POSIX)
+
+vi Commands
+vi commands are used in "screen" mode (the default), where
+you use the commands to move around the screen and to per-
+form operations on the text.
+
+Most vi commands follow a general pattern:
+	[command][number]textobject
+or the equivalent form:
+	[number][command]textobject
+
+Movement Commands
+vi movement commands distinguish between two kinds of
+"words." The lowerecase commands define a word as a conting-
+uous sequence of underscores, letters, and digits. The upper-
+case commands define a word as a contiguous sequence of 
+monwhitespace characters.
+
+command		Meaning
+Character
+h,j,k,l		Left,down,up,right(←,↓,↑,→)
+Text
+w,W,b,B 	Forward,backward by word
+e,E 		End of word
+),(		Beginning of next,previous sentence
+},{		Beginning of next,previous paragraph
+]],[[		Beginning of next,previous section
+Lines
+ENTER		First nonblank character of next line
+0,$		First, last position of current line
+^ 		First nonblank character of current line
++,- 		First nonblank character of next, previous
+		line
+n|		Column n of current line
+H,M,L 		Top, middle, last line of screen
+nH 		n(number) of lines after top line
+nL 		n(number) of lines before last line
+Scrolling
+CTRL-F,CTRL-B   Scroll forward, backward one screen
+CTRL-D,CTRL-U   Scroll down, up one half-screen
+CRTL-E,CTRL-Y   Show one more line at bottom, top of
+		window
+zENTER 		Reposition line with cursor: to top of
+		screen
+z.		Reposition line with cursor: to middle of
+		screen
+z-		Reposition line with cursor: to bottom of
+		screen
+CRTL-L		Redraw screen(without scrolling)
+Searches
+/pattern 	Search forwardfor pattern
+?pattern 	Search backward for pattern
+n,N		Repeat last search in same, opposite
+		direction
+/,?		Repeat previous search forward, backward
+fx		Search forward for character x in current
+		line
+Fx		Search backward for character x in current
+		line
+tx		Search forward to character before x in cur-
+		rent line
+Tx 		Search backward to character after x in
+		current line
+; 		Repeat previous current-line search
+,		Repeat previous current-line search in op-
+		posite direction
+Line number
+CTRL-G		Display current line number
+nG		Move to line number n
+G 		Move to last line in file
+:n		Move to line n in file
+Marking position
+mx 		Mark current positon as x
+'x		Move cursor to mark x (grave accent)
+''		Return to previous mark or context (two
+		grave accents)
+'x 		Move to beginning of line containing mark
+		x (single quote)
+''		Return to beginning of line containing pre-
+		vious mark (two single quotes)
+
+Editing Commands
+Command 	Action
+Insert
+i,a 		Insert text before, after cursor
+I,A		Insert text before beginning, after end of line
+o,O 		Open new line for text below, above cursor
+Change
+cw 		Change word
+cc		Change current line
+c motion 	Change text between the cursor and the tar-
+		get of motion
+C 		Change to end of line
+r		Replace single character
+R 		Type over (overwrite) characters
+s 		Substitue: delete character and insert new
+		text
+S		Substitute: delete current line and insert new
+		text
+Delete,move
+x 		Delete character under cursor
+X 		Delete character before cursor
+dw 		Delete word
+dd		Delete current line
+d motion 	Delete text between the cursor and the target
+		of motion
+D		Delete to end of line
+p,P 		Put deleted text after, before cursor
